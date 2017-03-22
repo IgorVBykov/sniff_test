@@ -234,7 +234,6 @@ u_int16_t calcCRC(const u_int16_t *packet, int length)
 u_int16_t calcTCP_CRC(const u_char *packet)
 {
     char tcpBuf[65536];
-    //memset(tcpBuf, 0, 5000);
     uint16_t csum;
     size_t ipHDRSize;
     size_t ipPacketSize;
@@ -246,7 +245,7 @@ u_int16_t calcTCP_CRC(const u_char *packet)
     ipHDRSize = IP_HL(ip)*4;
     ipPacketSize = ntohs(ip->ip_len);
     ipPayloadSize = ipPacketSize - ipHDRSize;
-    tcp = (const struct TCPPacket *)(packet + ETHERNET_HDR_SIZE + ipHDRSize);//(packet + ETHERNET_HDR_SIZE + ipHDRSize);
+    tcp = (const struct TCPPacket *)(packet + ETHERNET_HDR_SIZE + ipHDRSize);
     psdHeader.ip_src = ip->ip_src;
     psdHeader.ip_dst = ip->ip_dst;
     psdHeader.zeroes = 0;
